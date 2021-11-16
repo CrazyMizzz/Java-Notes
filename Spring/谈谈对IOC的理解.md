@@ -11,11 +11,11 @@
 1. 容器的创建过程，通过createBeanFacotry创建出一个Bean工厂（DefaultListableBeanFactory），向bean工厂中设置一些参数（BeanPostProcessor，Aware接口的子类）等属性
 2. 加载解析bean对象，准备要创建的bean对象的定义对象beanDefinition（xml或者注解的解析过程）
 3. beanFactoryPostProcessor的处理，PlaceHolderConfigurSupport，ConfigurationClassPostProcessor
-4. BeanPostProcessor的注册功能，方便后续对bean对象完成具体的扩展功能
-5. 通过反射的方式将BeanDefinition对象实例化成具体的bean对象
-6. bean对象的初始化过程通过createBean,doCreateBean方法，以反射的方法创建对象，一般情况下是无参的构造方法（getDeclaredConstructor，newInstance），
-7. 调用aware接口相关方法，invokeAwareMethod，完成BeanName，BeanFactory，BeanClassLoader对象的属性设置，
-8. 调用beanPostProcessor的PostProcessorBeforeInitialization方法（使用比较多的有ApplicationContextPostProcessor，设置ApplicationContext，Enviroment，ResourceLoader）
-9. 调用init-method方法，调用BeanPostProcessorAfterInitialLization方法
+4. 通过反射的方式将BeanDefinition对象实例化成具体的bean对象
+5. bean对象的初始化过程通过createBean,doCreateBean方法，以反射的方法创建对象，一般情况下是无参的构造方法（getDeclaredConstructor，newInstance），
+6. 调用aware接口相关方法，invokeAwareMethod，完成BeanName，BeanFactory，BeanClassLoader对象的属性设置，
+7. 调用beanPostProcessor的PostProcessorBeforeInitialization方法（使用比较多的有ApplicationContextPostProcessor，设置ApplicationContext，Enviroment，ResourceLoader）
+8. 调用init-method方法，判断是否实现了initializingBean接口，如果有就调用afterPropertiesSet方法，没有就不调用
+9. 调用BeanPostProcessor的PostProcessorAfterInitialLization方法（spring的aop就是在此处实现的，AbstractAutoProxyCreator，注册Destruction相关的回调接口）
 10. 生成完整的bean对象，通过getBean方法可以直接获取
-11. 销毁过程    
+11. 销毁过程 1：判断是否实现了DispoableBean 2：调用destroyMethod方法
