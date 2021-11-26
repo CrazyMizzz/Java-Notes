@@ -1,0 +1,4 @@
+1. master服务器将数据的改变记录在二进制文件binlog日志中，当master上的数据进行改变时，则将其写入binlog
+2. slave服务器会有一个单独的IO线程定期对master binlog探测是否发生改变，如果发生改变则拉取binlog
+3. slave读取binlog以后写入到relay log中继日志
+4. slave数据库线程从中继日志中同步数据
