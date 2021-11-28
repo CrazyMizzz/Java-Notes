@@ -1,5 +1,7 @@
 # Bean的生命周期
 
+![生命周期](Bean生命周期.jpg)
+
 - Bean 容器找到配置文件中 Spring Bean 的定义。
 - Bean 容器利用 Java Reflection API 创建一个 Bean 的实例。
 - 如果涉及到一些属性值 利用 set()方法设置一些属性值。
@@ -13,3 +15,5 @@
 - 如果有和加载这个 Bean 的 Spring 容器相关的 BeanPostProcessor 对象，执行- postProcessAfterInitialization() 方法
 - 当要销毁 Bean 的时候，如果 Bean 实现了 DisposableBean 接口，执行 destroy() 方法。
 - 当要销毁 Bean 的时候，如果 Bean 在配置文件中的定义包含 destroy-method 属性，执行指定的方法。
+
+![主要方法](Bean生命周期内的主要方法.jpg)
