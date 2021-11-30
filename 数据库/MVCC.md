@@ -2,7 +2,7 @@ MVCC全称叫做多版本并发控制，主要由undo log，Read View，三个�
 
 有两个概念需要先说明一下，
 
-1. 当前读：比如select for update ，lock in share mode 就是当前读，当前读会给这条记录加锁，禁止其他线程对这条记录进行修改
+1. 当前读：比如select for update ，lock in share mode，insert，update，delete 就是当前读，当前读会给这条记录加锁，禁止其他线程对这条记录进行修改
 
 2. 快照读：快照读是由MVCC实现的，快照读不会对记录加锁，快照读会根据当前事务生成一个试图，读到的有可能不是最新的数据。前提是隔离级别不是串行，串行级别下快照读会退化成当前读
 

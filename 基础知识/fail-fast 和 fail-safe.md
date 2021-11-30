@@ -79,7 +79,7 @@ fail-safe集合的所有对集合的修改都是先拷贝一份副本，然后�
             System.out.println(it.next());
         }
     }
-复制ErrorOK!
+    
 我们得到CopyOnWriteArrayList的Iterator之后，通过for循环直接删除原数组中的值，最后在结尾处输出Iterator，结果发现内容如下：
 
     [hollis, HollisChuang, H]
